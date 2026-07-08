@@ -20,7 +20,7 @@ export function EditEmailForm({
       <input
         type="text"
         autoFocus
-        className="border"
+        className="border p-2"
         value={myEmail}
         onChange={(e) => {
           setMyEmail(e.target.value);
