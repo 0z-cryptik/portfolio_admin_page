@@ -1,11 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import type { ReactNode } from "react";
 import type { ProfileData, ProjectData } from "../Types/customTypes";
 
 // Define everything our global context will share with other files
 interface PortfolioContextType {
   profile: ProfileData | null;
+  setProfile: Dispatch<SetStateAction<ProfileData | null>>; 
   projects: ProjectData[];
+  setProjects: Dispatch<SetStateAction<ProjectData[]>>; 
   loading: boolean;
   error: string | null;
 }
@@ -50,7 +53,14 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
 
   return (
     <PortfolioContext.Provider
-      value={{ profile, projects, loading, error }}>
+      value={{
+        profile,
+        projects,
+        loading,
+        error,
+        setProfile,
+        setProjects
+      }}>
       {children}
     </PortfolioContext.Provider>
   );
