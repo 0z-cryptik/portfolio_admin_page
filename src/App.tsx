@@ -1,9 +1,9 @@
 import { useMyGlobalState } from "./Context/portfolioContext";
 import { PageLoader } from "./Components/Loaders/pageLoader";
 import { HomePageError } from "./Components/ErrorPages/HomePageError";
-import { Header } from "./Profile/header";
-import { AboutMe } from "./Profile/aboutMe";
-import { MySkills } from "./Profile/mySkills";
+import { Header } from "./Components/Profile/header";
+import { AboutMe } from "./Components/Profile/aboutMe";
+import { MySkills } from "./Components/Profile/mySkills";
 import { ProjectsHeading } from "./Components/Projects/projectHeading";
 import { Projects } from "./Components/Projects/projects";
 
@@ -19,11 +19,11 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 p-6 sm:p-12">
+    <div className="min-h-screen bg-slate-900 text-slate-100 py-6 sm:py-12">
       <div className="max-w-4xl mx-auto space-y-12">
         <Header></Header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="">
           <AboutMe></AboutMe>
           <MySkills></MySkills>
         </div>

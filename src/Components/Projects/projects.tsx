@@ -7,7 +7,7 @@ export function Projects() {
   const { projects } = useMyGlobalState();
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="grid gap-6">
       {projects.map((project) => (
         <div
           key={project.project_id}

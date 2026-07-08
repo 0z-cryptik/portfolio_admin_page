@@ -1,4 +1,4 @@
-import { useMyGlobalState } from "../Context/portfolioContext";
+import { useMyGlobalState } from "../../Context/portfolioContext";
 
 export function Header() {
   const { profile } = useMyGlobalState();
