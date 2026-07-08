@@ -2,7 +2,7 @@ import type { ProfileData } from "../Types/customTypes";
 
 export async function updateBackendData(
   destinationUrl: string,
-  newValue: Record<string, any>
+  payload: Record<string, any>
 ): Promise<ProfileData> {
   try {
     const response = await fetch(destinationUrl, {
@@ -10,7 +10,7 @@ export async function updateBackendData(
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newValue)
+      body: JSON.stringify(payload)
     });
 
     if (!response.ok) {

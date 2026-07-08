@@ -1,7 +1,7 @@
 import { useMyGlobalState } from "./Context/portfolioContext";
 import { PageLoader } from "./Components/Loaders/pageLoader";
 import { HomePageError } from "./Components/ErrorPages/HomePageError";
-import { Header } from "./Components/Profile/header";
+import { Header } from "./Components/Profile/Header/header";
 import { AboutMe } from "./Components/Profile/aboutMe";
 import { MySkills } from "./Components/Profile/mySkills";
 import { ProjectsHeading } from "./Components/Projects/projectHeading";
