@@ -2,11 +2,12 @@ import type { ProfileData } from "../Types/customTypes";
 
 export async function updateBackendData(
   destinationUrl: string,
-  payload: Record<string, any>
+  payload: Record<string, any>,
+  httpMethod: string
 ): Promise<ProfileData> {
   try {
     const response = await fetch(destinationUrl, {
-      method: "PUT",
+      method: httpMethod,
       headers: {
         "Content-Type": "application/json"
       },

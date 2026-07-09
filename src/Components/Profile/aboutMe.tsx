@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMyGlobalState } from "../../Context/portfolioContext";
 import { EditButton } from "../editButton";
-import { updateBackendData } from "../../helperFunctions/editSubmitionFuncs";
+import { updateBackendData } from "../../helperFunctions/upDateBackendData";
 
 export function AboutMe() {
   const { profile, setProfile } = useMyGlobalState();
@@ -15,7 +15,8 @@ export function AboutMe() {
     setEditing(false);
     let updatedprofile = await updateBackendData(
       "http://localhost:3000/api/profile/1/",
-      { field: "about_me", newValue: aboutMe }
+      { field: "about_me", newValue: aboutMe },
+      "PUT"
     );
 
     setProfile(updatedprofile);
@@ -28,7 +29,8 @@ export function AboutMe() {
 
       {!editing && !updating && (
         <div className="flex">
-          <EditButton margin_right
+          <EditButton
+            margin_right
             clickFunction={() => {
               setEditing(true);
               setAboutMe(profile.about_me);
@@ -42,14 +44,17 @@ export function AboutMe() {
 
       {editing && (
         <form onSubmit={handleSubmit}>
-          <textarea autoFocus className="w-[50vw] h-[25vh] p-3 border"
+          <textarea
+            autoFocus
+            className="w-[50vw] h-[25vh] p-3 border"
             value={aboutMe}
             onChange={(e) => {
               setAboutMe(e.target.value);
             }}
           />
 
-          <button type="button"
+          <button
+            type="button"
             onClick={() => {
               setAboutMe(profile.about_me);
               setEditing(false);

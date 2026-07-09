@@ -1,6 +1,6 @@
 import { useMyGlobalState } from "../../../Context/portfolioContext";
 import { useState } from "react";
-import { updateBackendData } from "../../../helperFunctions/editSubmitionFuncs";
+import { updateBackendData } from "../../../helperFunctions/upDateBackendData";
 import { DisplayName } from "./Name/Display/nameDisplay";
 import { DisplayEmail } from "./Email/Display/emailDisplay";
 import { EditNameForm } from "./Name/Editing/nameEditForm";
@@ -35,7 +35,8 @@ export function Header() {
     setEditingName(false);
     let updatedProfile = await updateBackendData(
       "http://localhost:3000/api/profile/1/",
-      { field: "full_name", newValue: myName }
+      { field: "full_name", newValue: myName },
+      "PUT"
     );
 
     setProfile(updatedProfile);
@@ -48,7 +49,8 @@ export function Header() {
     setEditingEmail(false);
     let updatedprofile = await updateBackendData(
       "http://localhost:3000/api/profile/1/",
-      { field: "email", newValue: myEmail }
+      { field: "email", newValue: myEmail },
+      "PUT"
     );
 
     setProfile(updatedprofile);

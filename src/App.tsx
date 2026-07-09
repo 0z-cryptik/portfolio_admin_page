@@ -3,7 +3,7 @@ import { PageLoader } from "./Components/Loaders/pageLoader";
 import { HomePageError } from "./Components/ErrorPages/HomePageError";
 import { Header } from "./Components/Profile/Header/header";
 import { AboutMe } from "./Components/Profile/aboutMe";
-import { MySkills } from "./Components/Profile/mySkills";
+import { MySkills } from "./Components/Profile/MySkills/mySkills";
 import { ProjectsHeading } from "./Components/Projects/projectHeading";
 import { Projects } from "./Components/Projects/projects";
 
