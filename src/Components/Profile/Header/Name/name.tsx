@@ -2,6 +2,7 @@ import { useEditingStateLogic } from "../../../../CustomHooks/editingStateLogicH
 import { useMyGlobalState } from "../../../../Context/portfolioContext";
 import { updateBackendData } from "../../../../helperFunctions/upDateBackendData";
 import { EditButton } from "../../../editButton";
+import type { ProfileData } from "../../../../Types/customTypes";
 
 export function Name() {
   const {
@@ -19,7 +20,7 @@ export function Name() {
     e.preventDefault();
     setLoading(true);
     setEditing(false);
-    let updatedProfile = await updateBackendData(
+    let updatedProfile = await updateBackendData<ProfileData>(
       "http://localhost:3000/api/profile/1/",
       { field: "full_name", newValue: inputValue },
       "PUT"

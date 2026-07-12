@@ -14,7 +14,7 @@ interface ProjectData {
   description: string;
   repo_link?: string;
   live_link?: string;
-  tech_stack: string[];
+  skills: string[];
 }
 
 export type {ProfileData, ProjectData}

@@ -1,10 +1,8 @@
-import type { ProfileData } from "../Types/customTypes";
-
-export async function updateBackendData(
+export async function updateBackendData<T>(
   destinationUrl: string,
   payload: Record<string, any>,
   httpMethod: string
-): Promise<ProfileData> {
+): Promise<T> {
   try {
     const response = await fetch(destinationUrl, {
       method: httpMethod,

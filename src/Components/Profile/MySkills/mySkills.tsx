@@ -3,6 +3,7 @@ import { useMyGlobalState } from "../../../Context/portfolioContext";
 import { AddSkillButton } from "./addSkillButton";
 import { MdOutlineCancel } from "react-icons/md";
 import { updateBackendData } from "../../../helperFunctions/upDateBackendData";
+import type { ProfileData } from "../../../Types/customTypes";
 
 export function MySkills() {
   const { profile, setProfile } = useMyGlobalState();
@@ -10,7 +11,7 @@ export function MySkills() {
 
   async function handleDelete(skill: string) {
     setDeletingSkill(true);
-    const updatedProfile = await updateBackendData(
+    const updatedProfile = await updateBackendData<ProfileData>(
       "http://localhost:3000/api/profile/1/skills",
       { skillName: skill },
       "DELETE"

@@ -1,7 +1,8 @@
 import { useMyGlobalState } from "../../Context/portfolioContext";
 import { ProjectLinks } from "./projectLinks";
 import { ProjectSkills } from "./projectSkills";
-import { TitleAndDescription } from "./titleAndDescription";
+import { ProjectTitle } from "./title";
+import { ProjectDescription } from "./description";
 
 export function Projects() {
   const { projects } = useMyGlobalState();
@@ -12,7 +13,10 @@ export function Projects() {
         <div
           key={project.project_id}
           className="bg-slate-800/40 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 flex flex-col justify-between shadow-xl transition-all group">
-          <TitleAndDescription project={project} />
+          <div className="space-y-3">
+            <ProjectTitle project={project} />
+            <ProjectDescription project={project} />
+          </div>
 
           <div className="mt-6 pt-4 border-t border-slate-800/60 space-y-4">
             <ProjectSkills project={project} />

@@ -1,6 +1,7 @@
 import { useMyGlobalState } from "../../../../Context/portfolioContext";
 import { useEditingStateLogic } from "../../../../CustomHooks/editingStateLogicHook";
 import { updateBackendData } from "../../../../helperFunctions/upDateBackendData";
+import type { ProfileData } from "../../../../Types/customTypes";
 import { EditButton } from "../../../editButton";
 
 export function Email() {
@@ -20,7 +21,7 @@ export function Email() {
     setLoading(true);
     setEditing(false);
 
-    let updatedprofile = await updateBackendData(
+    let updatedprofile = await updateBackendData<ProfileData>(
       "http://localhost:3000/api/profile/1/",
       { field: "email", newValue: inputValue },
       "PUT"
