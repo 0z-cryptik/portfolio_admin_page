@@ -9,11 +9,12 @@ export function MySkills() {
   const { profile, setProfile } = useMyGlobalState();
   const [deletingSkill, setDeletingSkill] = useState(false);
 
-  async function handleDelete(skill: string) {
+  async function handleDelete(skillId: number) {
+    console.log(skillId)
     setDeletingSkill(true);
     const updatedProfile = await updateBackendData<ProfileData>(
       "http://localhost:3000/api/profile/1/skills",
-      { skillName: skill },
+      { skillId: `${skillId}` },
       "DELETE"
     );
     console.log(updatedProfile);
@@ -34,10 +35,10 @@ export function MySkills() {
             <span
               key={index}
               className="px-2.5 py-1 bg-slate-800 border border-slate-700 text-slate-300 rounded-md font-mono">
-              {skill}
+              {skill.skill_name}
               <button
                 onClick={() => {
-                  handleDelete(skill);
+                  handleDelete(skill.skill_id);
                 }} className="cursor-pointer ml-2 relative -bottom-1">
                 <MdOutlineCancel />
               </button>

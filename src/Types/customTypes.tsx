@@ -5,7 +5,12 @@ interface ProfileData {
   github_url?: string;
   linkedin_url?: string;
   twitter_url?: string;
-  skills: string[];
+  skills: Skills[];
+}
+
+interface Skills {
+  skill_id: number;
+  skill_name: string;
 }
 
 interface ProjectData {
@@ -14,7 +19,7 @@ interface ProjectData {
   description: string;
   repo_link?: string;
   live_link?: string;
-  skills: string[];
+  skills: Skills[];
 }
 
-export type {ProfileData, ProjectData}
+export type { ProfileData, ProjectData };

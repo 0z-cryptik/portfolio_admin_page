@@ -6,6 +6,7 @@ import {
   MdOutlineCheckBox
 } from "react-icons/md";
 import { updateBackendData } from "../../helperFunctions/upDateBackendData";
+import { useState } from "react";
 
 export function ProjectSkills({ project }: { project: ProjectData }) {
   const {
@@ -16,6 +17,8 @@ export function ProjectSkills({ project }: { project: ProjectData }) {
     loading,
     setLoading
   } = useEditingStateLogic();
+
+  const [deleting, setDeleting] = useState(false);
 
   const { setProjects } = useMyGlobalState();
 
@@ -34,21 +37,50 @@ export function ProjectSkills({ project }: { project: ProjectData }) {
     setLoading(false);
   }
 
+  async function handleDelete(skillId: number) {
+    const updatedProjects = await updateBackendData<ProjectData[]>(
+      "http://localhost:3000/api/profile/1/projects/skills",
+      { skillId: `${skillId}`, projectId: `${project.project_id}` },
+      "DELETE"
+    );
+    setProjects(updatedProjects);
+  }
+
   return (
     <div className="flex flex-wrap gap-1.5">
-      {project.skills.map((skill, i) => (
-        <span
-          key={i}
-          className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono">
-          {skill}
+      {project.skills.map((skill, i) => {
+        if (!deleting) {
+          return (
+            <span
+              key={i}
+              className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono">
+              {skill.skill_name}
 
-          <button className="ml-2 border-l border-l-cyan-800/40 pl-1 text-red-700 cursor-pointer">
-            X
-          </button>
+              <button
+                onClick={() => {
+                  handleDelete(skill.skill_id);
+                }}
+                className="ml-2 border-l border-l-cyan-800/40 pl-1 text-red-700 cursor-pointer">
+                X
+              </button>
+            </span>
+          );
+        } else {
+          return (
+            <span
+              key={i}
+              className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono">
+              Loading
+            </span>
+          );
+        }
+      })}
+
+      {loading && (
+        <span className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono">
+          Loading...
         </span>
-      ))}
-
-      {loading && <p>Loading...</p>}
+      )}
 
       {editing && (
         <form
