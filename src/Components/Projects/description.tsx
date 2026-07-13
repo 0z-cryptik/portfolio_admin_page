@@ -45,7 +45,7 @@ export function ProjectDescription({ project }: { project: ProjectData }) {
           handleSubmit(project.project_id);
         }}>
         <textarea
-          className="text-slate-400 text-sm border p-1 w-160 h-[9rem]"
+          className="text-slate-400 text-sm border p-1 w-160 h-36"
           autoFocus
           value={inputValue}
           onChange={(e) => {

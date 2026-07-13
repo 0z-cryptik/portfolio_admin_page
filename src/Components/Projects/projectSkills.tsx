@@ -1,20 +1,94 @@
 import type { ProjectData } from "../../Types/customTypes";
+import { useMyGlobalState } from "../../Context/portfolioContext";
+import { useEditingStateLogic } from "../../CustomHooks/editingStateLogicHook";
+import {
+  MdOutlineCancelPresentation,
+  MdOutlineCheckBox
+} from "react-icons/md";
+import { updateBackendData } from "../../helperFunctions/upDateBackendData";
 
 export function ProjectSkills({ project }: { project: ProjectData }) {
+  const {
+    editing,
+    setEditing,
+    inputValue,
+    setInputValue,
+    loading,
+    setLoading
+  } = useEditingStateLogic();
+
+  const { setProjects } = useMyGlobalState();
+
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    setEditing(false);
+    const updatedProjects = await updateBackendData<ProjectData[]>(
+      "http://localhost:3000/api/profile/1/projects/skills",
+      { newSkill: inputValue, projectId: `${project.project_id}` },
+      "POST"
+    );
+
+    setProjects(updatedProjects);
+    setInputValue("");
+    setLoading(false);
+  }
+
   return (
     <div className="flex flex-wrap gap-1.5">
-      {project.skills && project.skills.length > 0 ? (
-        project.skills.map((tech, idx) => (
-          <span
-            key={idx}
-            className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono">
-            {tech}
-          </span>
-        ))
-      ) : (
-        <span className="text-xs text-slate-600 italic">
-          No tags associated
+      {project.skills.map((skill, i) => (
+        <span
+          key={i}
+          className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono">
+          {skill}
+
+          <button className="ml-2 border-l border-l-cyan-800/40 pl-1 text-red-700 cursor-pointer">
+            X
+          </button>
         </span>
+      ))}
+
+      {loading && <p>Loading...</p>}
+
+      {editing && (
+        <form
+          className="bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono  flex"
+          onSubmit={handleSubmit}>
+          <input
+            className="px-2 py-0.5 outline-none"
+            type="text"
+            autoFocus
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
+
+          <button
+            onClick={() => {
+              setEditing(false);
+              setInputValue("");
+            }}
+            type="button"
+            className="cursor-pointer">
+            <MdOutlineCancelPresentation size={20} />
+          </button>
+          <button
+            type="submit"
+            className="cursor-pointer ml-1">
+            <MdOutlineCheckBox size={20} />
+          </button>
+        </form>
+      )}
+
+      {!editing && !loading && (
+        <button
+          onClick={() => {
+            setEditing(true);
+          }}
+          className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono cursor-pointer">
+          +
+        </button>
       )}
     </div>
   );
