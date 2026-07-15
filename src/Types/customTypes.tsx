@@ -19,6 +19,9 @@ interface ProjectData {
   description: string;
   repo_link?: string;
   live_link?: string;
+  backend_repo?: string;
+  show_on_cv?: boolean;
+  see_how_it_works: string;
   skills: Skills[];
 }
 

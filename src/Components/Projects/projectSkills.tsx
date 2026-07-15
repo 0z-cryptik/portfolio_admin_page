@@ -47,7 +47,7 @@ export function ProjectSkills({ project }: { project: ProjectData }) {
   }
 
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-slate-800/60">
       {project.skills.map((skill, i) => {
         if (!deleting) {
           return (

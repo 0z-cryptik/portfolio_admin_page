@@ -1,8 +1,9 @@
 import { useMyGlobalState } from "../../Context/portfolioContext";
-import { ProjectLinks } from "./projectLinks";
+import { ProjectLinks } from "./projectLinks/projectLinks";
 import { ProjectSkills } from "./projectSkills";
 import { ProjectTitle } from "./title";
 import { ProjectDescription } from "./description";
+import { ProjectRepoToggle } from "./projectLinks/show_on_repo";
 
 export function Projects() {
   const { projects } = useMyGlobalState();
@@ -18,10 +19,9 @@ export function Projects() {
             <ProjectDescription project={project} />
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-800/60 space-y-4">
-            <ProjectSkills project={project} />
-            <ProjectLinks project={project} />
-          </div>
+          <ProjectSkills project={project} />
+          <ProjectLinks project={project} />
+          <ProjectRepoToggle project={project} />
         </div>
       ))}
     </div>
