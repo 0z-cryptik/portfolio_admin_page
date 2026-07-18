@@ -3,7 +3,9 @@ import { ProjectLinks } from "./projectLinks/projectLinks";
 import { ProjectSkills } from "./projectSkills";
 import { ProjectTitle } from "./title";
 import { ProjectDescription } from "./description";
-import { ProjectRepoToggle } from "./projectLinks/show_on_repo";
+import { ShowOnCVToggle } from "./show_on_CV";
+import { AddProjectForm } from "./addProjects/addProjectForm";
+import { DeleteProject } from "./deleteProject";
 
 export function Projects() {
   const { projects } = useMyGlobalState();
@@ -21,9 +23,13 @@ export function Projects() {
 
           <ProjectSkills project={project} />
           <ProjectLinks project={project} />
-          <ProjectRepoToggle project={project} />
+          <div className="inline-flex mt-6 border-t border-slate-800/60 pt-5">
+            <ShowOnCVToggle project={project} />
+            <DeleteProject project={project} />
+          </div>
         </div>
       ))}
+      <AddProjectForm />
     </div>
   );
 }
