@@ -8,7 +8,6 @@ export function AddProjectForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [addProject, setAddProject] = useState(false);
 
-  // 1. Group all inputs into a single object state
   const [formInputData, setFormInputData] = useState({
     projectName: "",
     description: "",
@@ -16,7 +15,8 @@ export function AddProjectForm() {
     backendRepoLink: "",
     repoLink: "",
     seeHowItWorks: "",
-    skillIds: [] as number[]
+    skillIds: [] as number[],
+    showOnCV: true
   });
 
   const { profile, setProjects } = useMyGlobalState();
@@ -29,7 +29,8 @@ export function AddProjectForm() {
       backendRepoLink: "",
       repoLink: "",
       seeHowItWorks: "",
-      skillIds: []
+      skillIds: [],
+      showOnCV: true
     });
   }
 
@@ -64,6 +65,13 @@ export function AddProjectForm() {
 
       return { ...prev, skillIds: updatedSkillIds };
     });
+  }
+
+  function handleToggleCv() {
+    setFormInputData((prev) => ({
+      ...prev,
+      showOnCV: !prev.showOnCV
+    }));
   }
 
   function handleChange(
@@ -199,6 +207,22 @@ export function AddProjectForm() {
               );
             })}
           </div>
+        </div>
+
+        <div className="py-2">
+          <label className="inline-flex items-center gap-3 cursor-pointer select-none group">
+            <input
+              type="checkbox"
+              name="showOnCV"
+              checked={formInputData.showOnCV}
+              onChange={handleToggleCv}
+              className="sr-only peer"
+            />
+            <div className="relative w-9 h-5 bg-slate-700 peer-focus:outline-none peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:inset-s-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-cyan-500 group-hover:ring-2 group-hover:ring-slate-600 rounded-full transition-all duration-150"></div>
+            <span className="text-sm font-medium text-slate-300 group-hover:text-slate-100 transition-colors">
+              Show on CV
+            </span>
+          </label>
         </div>
 
         <button

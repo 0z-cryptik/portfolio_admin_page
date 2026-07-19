@@ -4,7 +4,7 @@ import { updateBackendData } from "../../../../helperFunctions/upDateBackendData
 import type { ProfileData } from "../../../../Types/customTypes";
 import { EditButton } from "../../../editButton";
 
-export function Email() {
+export function LinkedIn() {
   const {
     editing,
     loading,
@@ -23,7 +23,7 @@ export function Email() {
 
     let updatedprofile = await updateBackendData<ProfileData>(
       "http://localhost:3000/api/profile/1/",
-      { field: "email", newValue: inputValue },
+      { field: "linkedin_url", newValue: inputValue },
       "PUT"
     );
 
@@ -39,11 +39,12 @@ export function Email() {
     return (
       <form
         onSubmit={handleEmailSubmit}
-        className="flex">
+        className="flex items-center">
+            <label className="mr-3">LinkedIn: </label>
         <input
           type="text"
           autoFocus
-          className="border p-2"
+          className="border p-2 text-xs min-w-140"
           value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value);
@@ -67,10 +68,12 @@ export function Email() {
 
   return (
     <div className="flex">
-      <p className={`text-cyan-400 font-medium`}>{profile.email}</p>
+      <p className="flex max-w-140 gap-2 items-center">
+        LinkedIn: <a href={profile.linkedin_url} className=" text-cyan-400 text-xs truncate inline">{profile.linkedin_url}</a>
+      </p>
       <EditButton
         clickFunction={() => {
-          setInputValue(profile.email);
+          setInputValue(profile.linkedin_url);
           setEditing(true);
         }}
       />
