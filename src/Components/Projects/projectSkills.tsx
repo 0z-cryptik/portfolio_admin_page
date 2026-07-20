@@ -26,24 +26,40 @@ export function ProjectSkills({ project }: { project: ProjectData }) {
     e.preventDefault();
     setLoading(true);
     setEditing(false);
-    const updatedProjects = await updateBackendData<ProjectData[]>(
-      "http://localhost:3000/api/profile/1/projects/skills",
-      { newSkill: inputValue, projectId: `${project.project_id}` },
-      "POST"
-    );
 
-    setProjects(updatedProjects);
-    setInputValue("");
-    setLoading(false);
+    try {
+      const updatedProjects = await updateBackendData<ProjectData[]>(
+        "http://localhost:3000/api/profile/1/projects/skills",
+        { newSkill: inputValue, projectId: `${project.project_id}` },
+        "POST"
+      );
+
+      setProjects(updatedProjects);
+    } catch (e) {
+      alert("Error submitting new skill");
+      console.error(e);
+    } finally {
+      setInputValue("");
+      setLoading(false);
+    }
   }
 
   async function handleDelete(skillId: number) {
-    const updatedProjects = await updateBackendData<ProjectData[]>(
-      "http://localhost:3000/api/profile/1/projects/skills",
-      { skillId: `${skillId}`, projectId: `${project.project_id}` },
-      "DELETE"
-    );
-    setProjects(updatedProjects);
+    setDeleting(true);
+
+    try {
+      const updatedProjects = await updateBackendData<ProjectData[]>(
+        "http://localhost:3000/api/profile/1/projects/skills",
+        { skillId: `${skillId}`, projectId: `${project.project_id}` },
+        "DELETE"
+      );
+      setProjects(updatedProjects);
+    } catch (e) {
+      alert("Failed to delete skill");
+      console.error(e);
+    } finally {
+      setDeleting(false);
+    }
   }
 
   return (
