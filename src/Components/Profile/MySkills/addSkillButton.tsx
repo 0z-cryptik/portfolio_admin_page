@@ -39,7 +39,7 @@ export function AddSkillButton() {
   if (editing) {
     return (
       <form
-        className="bg-slate-800 border border-slate-700 text-slate-300 rounded-md font-mono"
+        className="bg-slate-800 border border-slate-700 text-slate-300 rounded-md font-mono flex items-center"
         onSubmit={handleSubmit}>
         <input
           className="p-1 outline-none"
@@ -57,12 +57,12 @@ export function AddSkillButton() {
             setInputValue("");
           }}
           type="button"
-          className="cursor-pointer relative -bottom-1">
+          className="cursor-pointer">
           <MdOutlineCancelPresentation size={30} />
         </button>
         <button
           type="submit"
-          className="cursor-pointer ml-1 relative -bottom-1">
+          className="cursor-pointer ml-1">
           <MdOutlineCheckBox size={30} />
         </button>
       </form>

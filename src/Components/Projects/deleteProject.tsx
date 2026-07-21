@@ -29,7 +29,7 @@ export function DeleteProject({ project }: { project: ProjectData }) {
   return (
     <button
       onClick={handleDelete}
-      className="text-red-500 ml-6 text-sm cursor-pointer">
+      className="text-red-500 ml-6 text-xs md:text-sm cursor-pointer">
       {loading ? "Deleting..." : "Delete Project"}
     </button>
   );

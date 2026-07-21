@@ -17,80 +17,116 @@ export function LiveLink({ project }: { project: ProjectData }) {
 
   async function handleSubmit(projectId: number) {
     setLoading(true);
-    setEditing(false);
 
-    let updatedProjects = await updateBackendData<ProjectData[]>(
-      "http://localhost:3000/api/profile/1/projects/",
-      {
-        field: "live_link",
-        newValue: inputValue,
-        projectId: `${projectId}`
-      },
-      "PUT"
-    );
+    try {
+      let updatedProjects = await updateBackendData<ProjectData[]>(
+        "http://localhost:3000/api/profile/1/projects/",
+        {
+          field: "live_link",
+          newValue: inputValue,
+          projectId: `${projectId}`
+        },
+        "PUT"
+      );
 
-    setProjects(updatedProjects);
-    setLoading(false);
+      setProjects(updatedProjects);
+    } catch (error) {
+      console.error("Failed to update live deployment link:", error);
+    } finally {
+      setLoading(false);
+      setEditing(false);
+    }
   }
 
-  return (
-    <div className="flex">
-      <a
-        href={project.live_link}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center text-xs text-blue-600 underline">
-        Live link↗
-      </a>
+  if (loading) {
+    return (
+      <div className="flex items-center gap-2 text-xs text-slate-500 animate-pulse py-1">
+        <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+        </svg>
+        <span>Updating live link...</span>
+      </div>
+    );
+  }
 
+  if (editing) {
+    return (
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(project.project_id);
-        }}>
-        {loading && (
+        }}
+        className="flex items-center gap-2 w-full max-w-md">
+        <div className="relative flex-1 min-w-0">
           <input
-            className="text-xs border ml-2 p-2 cursor-text w-60 truncate"
-            value="Loading..."
-            readOnly
-          />
-        )}
-
-        {!loading && (
-          <input
-            className="text-xs border ml-2 p-1 cursor-text w-60 truncate"
-            placeholder={project.live_link}
-            readOnly={!editing}
+            type="url"
+            required
+            autoFocus
+            className="w-full text-xs text-slate-200 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 placeholder-slate-600 transition-all"
+            placeholder="https://yourdomain.com"
             value={inputValue}
-            onChange={(e) => {
-              setInputValue(e.target.value);
-            }}
-            onClick={() => {
-              setInputValue(project.live_link);
-              setEditing(true);
-            }}
+            onChange={(e) => setInputValue(e.target.value)}
           />
-        )}
+        </div>
 
-        {editing && !loading && (
-          <span>
-            <button
-              onClick={() => {
-                setInputValue(project.live_link);
-                setEditing(false);
-              }}
-              type="button"
-              className="bg-slate-800 rounded-md p-1 ml-2 cursor-pointer text-xs">
-              cancel
-            </button>
-            <button
-              type="submit"
-              className="bg-slate-800 rounded-md p-1 ml-2 cursor-pointer text-xs">
-              submit
-            </button>
-          </span>
-        )}
+        <button
+          type="button"
+          onClick={() => {
+            setInputValue(project.live_link);
+            setEditing(false);
+          }}
+          className="text-xs text-slate-400 hover:text-slate-200 px-2.5 py-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 transition-colors">
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          className="text-xs font-medium text-white bg-cyan-600 hover:bg-cyan-500 px-3 py-1.5 rounded-lg transition-colors shadow-sm">
+          Save
+        </button>
       </form>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2 group/live text-xs">
+      <a
+        href={project.live_link}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1.5 text-slate-300 hover:text-cyan-400 font-medium transition-colors">
+        {/* Globe / Live Web Icon */}
+        <svg
+          className="w-4 h-4 text-slate-400 group-hover/live:text-cyan-400 transition-colors"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.8}
+            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+          />
+        </svg>
+        <span>Live Link</span>
+        <svg className="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+
+      <button
+        type="button"
+        onClick={() => {
+          setInputValue(project.live_link);
+          setEditing(true);
+        }}
+        className="p-1 text-slate-500 hover:text-slate-300 hover:bg-slate-800/80 rounded-md transition-colors ml-1"
+        title="Edit live link">
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+        </svg>
+      </button>
     </div>
   );
 }

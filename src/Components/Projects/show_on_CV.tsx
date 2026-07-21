@@ -48,9 +48,9 @@ export function ShowOnCVToggle({ project }: ProjectRepoToggleProps) {
       />
 
       {/* Styled toggle switch layout */}
-      <div className="relative w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-cyan-500 group-hover:ring-2 group-hover:ring-slate-600 rounded-full transition-all duration-150 disabled:opacity-50"></div>
+      <div className="relative w-9 h-5 bg-slate-700 peer-focus:outline-none peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-cyan-500 group-hover:ring-2 group-hover:ring-slate-600 rounded-full transition-all duration-150 disabled:opacity-50"></div>
 
-      <span className="text-sm font-medium text-slate-300 group-hover:text-slate-100 transition-colors">
+      <span className="text-xs md:text-sm font-medium text-slate-300 group-hover:text-slate-100 transition-colors">
         {isUpdating ? "Saving..." : "Show on CV"}
       </span>
     </label>

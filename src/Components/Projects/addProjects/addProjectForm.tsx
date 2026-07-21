@@ -45,7 +45,7 @@ export function AddProjectForm() {
       );
 
       setProjects(updatedProjects);
-      setAddProject(false)
+      setAddProject(false);
       resetInputState();
     } catch (e: any) {
       console.error(e);
@@ -88,7 +88,7 @@ export function AddProjectForm() {
   if (!addProject) {
     return (
       <button
-        className="w-full py-3 border rounded-md cursor-pointer text-slate-100 hover:text-cyan-400"
+        className="w-full max-sm:text-sm py-1 md:py-3 border rounded-md cursor-pointer text-slate-100 hover:text-cyan-400"
         onClick={() => {
           setAddProject(true);
         }}>
@@ -109,7 +109,7 @@ export function AddProjectForm() {
             name="projectName" // Must match the state key exactly!
             value={formInputData.projectName}
             onChange={handleChange}
-            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100"
+            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100 max-sm:text-sm"
             required
           />
         </div>
@@ -122,7 +122,7 @@ export function AddProjectForm() {
             name="description" // Must match the state key exactly!
             value={formInputData.description}
             onChange={handleChange}
-            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100 h-24 resize-none"
+            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100 h-24 resize-none max-sm:text-sm"
             required
           />
         </div>
@@ -136,7 +136,7 @@ export function AddProjectForm() {
             name="liveLink" // Must match the state key exactly!
             value={formInputData.liveLink}
             onChange={handleChange}
-            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100"
+            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100 max-sm:text-sm"
           />
         </div>
 
@@ -149,7 +149,7 @@ export function AddProjectForm() {
             name="seeHowItWorks" // Must match the state key exactly!
             value={formInputData.seeHowItWorks}
             onChange={handleChange}
-            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100"
+            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100 max-sm:text-sm"
           />
         </div>
 
@@ -162,7 +162,7 @@ export function AddProjectForm() {
             name="repoLink" // Must match the state key exactly!
             value={formInputData.repoLink}
             onChange={handleChange}
-            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100"
+            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100 max-sm:text-sm"
             required
           />
         </div>
@@ -176,7 +176,7 @@ export function AddProjectForm() {
             name="backendRepoLink" // Must match the state key exactly!
             value={formInputData.backendRepoLink}
             onChange={handleChange}
-            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100"
+            className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-slate-100 max-sm:text-sm"
           />
         </div>
 
@@ -185,7 +185,7 @@ export function AddProjectForm() {
             Programming Languages/frameworks used
           </label>
 
-          <div className="flex flex-wrap gap-2 bg-slate-900 p-3 rounded border border-slate-800">
+          <div className="flex max-sm:text-xs flex-wrap gap-2 bg-slate-900 p-3 rounded border border-slate-800">
             {profile.skills.map((skill) => {
               const isSelected = formInputData.skillIds.includes(
                 skill.skill_id
@@ -219,29 +219,31 @@ export function AddProjectForm() {
               className="sr-only peer"
             />
             <div className="relative w-9 h-5 bg-slate-700 peer-focus:outline-none peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:inset-s-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-cyan-500 group-hover:ring-2 group-hover:ring-slate-600 rounded-full transition-all duration-150"></div>
-            <span className="text-sm font-medium text-slate-300 group-hover:text-slate-100 transition-colors">
+            <span className="md:text-sm text-xs font-medium text-slate-300 group-hover:text-slate-100 transition-colors">
               Show on CV
             </span>
           </label>
         </div>
 
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full bg-cyan-600 hover:bg-cyan-500 transition-colors text-white font-medium py-2 rounded disabled:opacity-50 cursor-pointer">
-          {isLoading ? "Creating..." : "Save Project"}
-        </button>
-        <button
-          type="button"
-          className="w-full bg-cyan-700 hover:bg-cyan-500 transition-colors text-white font-medium py-2 rounded disabled:opacity-50 hover:text-red-500 cursor-pointer"
-          onClick={() => {
-            setAddProject(false);
-            resetInputState();
-          }}
-          disabled={isLoading}>
-          Cancel
-          <ImBin2 className="inline ml-2 mb-1" />
-        </button>
+        <div className="flex max-sm:gap-3 md:flex-col md:gap-4">
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-cyan-600 hover:bg-cyan-500 transition-colors text-white font-medium py-2 rounded disabled:opacity-50 cursor-pointer max-sm:text-sm">
+            {isLoading ? "Saving..." : "Save Project"}
+          </button>
+          <button
+            type="button"
+            className="w-full bg-cyan-700 hover:bg-cyan-500 transition-colors text-white font-medium py-2 rounded disabled:opacity-50 hover:text-red-500 cursor-pointer max-sm:text-sm"
+            onClick={() => {
+              setAddProject(false);
+              resetInputState();
+            }}
+            disabled={isLoading}>
+            Cancel
+            <ImBin2 className="inline ml-2 mb-1" />
+          </button>
+        </div>
       </form>
     );
   }

@@ -20,17 +20,17 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 py-6 sm:py-12">
-      <div className="max-w-4xl mx-auto space-y-12">
-        <Header></Header>
+      <div className="max-w-[92%] sm:max-w-[80%] lg:max-w-4xl mx-auto space-y-6 md:space-y-12">
+        <Header />
 
-        <div className="">
-          <AboutMe></AboutMe>
-          <MySkills></MySkills>
+        <div>
+          <AboutMe />
+          <MySkills />
         </div>
 
         <div className="space-y-6 pt-4">
-          <ProjectsHeading></ProjectsHeading>
-          <Projects></Projects>
+          <ProjectsHeading />
+          <Projects />
         </div>
       </div>
     </div>

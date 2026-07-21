@@ -63,13 +63,13 @@ export function ProjectSkills({ project }: { project: ProjectData }) {
   }
 
   return (
-    <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-slate-800/60">
+    <div className="flex flex-wrap items-center gap-1.5 mt-6 pt-3 md:pt-4 border-t border-slate-800/60">
       {project.skills.map((skill, i) => {
         if (!deleting) {
           return (
             <span
               key={i}
-              className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono">
+              className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[8.5px] md:text-[11px] font-mono">
               {skill.skill_name}
 
               <button
@@ -100,7 +100,7 @@ export function ProjectSkills({ project }: { project: ProjectData }) {
 
       {editing && (
         <form
-          className="bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono  flex"
+          className="bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded md:text-[11px] text-[8.5px] font-mono  flex"
           onSubmit={handleSubmit}>
           <input
             className="px-2 py-0.5 outline-none"
@@ -134,7 +134,7 @@ export function ProjectSkills({ project }: { project: ProjectData }) {
           onClick={() => {
             setEditing(true);
           }}
-          className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[11px] font-mono cursor-pointer">
+          className="px-2 py-0.5 bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 rounded text-[8.5px] md:text-[11px] font-mono cursor-pointer">
           +
         </button>
       )}

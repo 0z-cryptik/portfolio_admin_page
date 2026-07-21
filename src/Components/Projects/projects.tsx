@@ -43,7 +43,7 @@ export function Projects() {
   }
 
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-6 w-full">
       <AddProjectForm />
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="projects-list">
@@ -51,7 +51,7 @@ export function Projects() {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="grid gap-6">
+              className="grid gap-6 w-full">
               {projects.map((project, index) => (
                 <Draggable
                   key={project.project_id}
@@ -61,7 +61,7 @@ export function Projects() {
                     <div
                       ref={draggableProvided.innerRef}
                       {...draggableProvided.draggableProps}
-                      className={`relative bg-slate-800/40 border hover:border-slate-700 rounded-2xl p-6 flex flex-col justify-between shadow-xl transition-all group ${
+                      className={`relative bg-slate-800/40 border hover:border-slate-700 rounded-2xl p-4 sm:p-6 flex flex-col md:justify-between shadow-xl transition-all group w-full min-w-0 ${
                         snapshot.isDragging
                           ? "border-cyan-500/50 ring-2 ring-cyan-500/20 shadow-cyan-950/50"
                           : "border-slate-800"
@@ -80,14 +80,14 @@ export function Projects() {
                         </svg>
                       </button>
 
-                      <div className="space-y-3 pr-8">
+                      <div className="md:space-y-3 space-y-2 w-full min-w-0">
                         <ProjectTitle project={project} />
                         <ProjectDescription project={project} />
                       </div>
 
                       <ProjectSkills project={project} />
                       <ProjectLinks project={project} />
-                      <div className="inline-flex mt-6 border-t border-slate-800/60 pt-5">
+                      <div className="inline-flex mt-3 border-t border-slate-800/60 pt-5">
                         <ShowOnCVToggle project={project} />
                         <DeleteProject project={project} />
                       </div>

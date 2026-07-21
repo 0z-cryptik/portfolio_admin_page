@@ -6,7 +6,7 @@ import { SeeHowItWorks } from "./see_how_it_works";
 
 export function ProjectLinks({ project }: { project: ProjectData }) {
   return (
-    <div className="flex flex-col gap-3 mt-6 pt-4 border-t border-slate-800/60">
+    <div className="flex flex-col gap-3 mt-3 pt-3 md:pt-3 border-t border-slate-800/60">
       {project.repo_link && <RepoLink project={project} />}
 
       {project.live_link && <LiveLink project={project} />}

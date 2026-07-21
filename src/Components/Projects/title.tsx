@@ -40,9 +40,9 @@ export function ProjectTitle({ project }: { project: ProjectData }) {
         onSubmit={() => {
           handleSubmit(project.project_id);
         }}
-        className="flex">
+        className="flex w-full pr-8">
         <input
-          className="text-lg font-bold text-slate-100 border p-1"
+          className="md:text-lg text-sm w-full md:font-bold text-slate-100 border p-1"
           autoFocus
           type="text"
           value={inputValue}
@@ -55,12 +55,12 @@ export function ProjectTitle({ project }: { project: ProjectData }) {
           onClick={() => {
             setEditing(false);
           }}
-          className="bg-slate-800 rounded-md p-2 ml-4 cursor-pointer">
+          className="bg-slate-800 rounded-md md:p-2 max-sm:text-sm p-1 ml-2 md:ml-4 cursor-pointer">
           cancel
         </button>
         <button
           type="submit"
-          className="bg-slate-800 rounded-md p-2 ml-4 cursor-pointer">
+          className="bg-slate-800 rounded-md md:p-2 max-sm:text-sm p-1 ml-2 md:ml-4 cursor-pointer">
           submit
         </button>
       </form>
@@ -69,7 +69,7 @@ export function ProjectTitle({ project }: { project: ProjectData }) {
 
   return (
     <div className="flex">
-      <h3 className="text-lg font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">
+      <h3 className="md:text-lg text-sm font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">
         {project.title}
       </h3>
       <EditButton
