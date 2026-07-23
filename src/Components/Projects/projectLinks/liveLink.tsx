@@ -55,7 +55,7 @@ export function LiveLink({ project }: { project: ProjectData }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit(project.project_id);
+          handleSubmit(project?.project_id);
         }}
         className="flex items-center gap-2 w-full max-w-md">
         <div className="relative flex-1 min-w-0">
@@ -64,7 +64,6 @@ export function LiveLink({ project }: { project: ProjectData }) {
             required
             autoFocus
             className="w-full text-xs text-slate-200 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 placeholder-slate-600 transition-all"
-            placeholder="https://yourdomain.com"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
@@ -73,7 +72,7 @@ export function LiveLink({ project }: { project: ProjectData }) {
         <button
           type="button"
           onClick={() => {
-            setInputValue(project.live_link);
+            setInputValue(project?.live_link);
             setEditing(false);
           }}
           className="text-xs text-slate-400 hover:text-slate-200 px-2.5 py-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 transition-colors">
@@ -92,11 +91,10 @@ export function LiveLink({ project }: { project: ProjectData }) {
   return (
     <div className="flex items-center gap-2 group/live text-xs">
       <a
-        href={project.live_link}
+        href={project?.live_link}
         target="_blank"
         rel="noreferrer"
         className="inline-flex items-center gap-1.5 text-slate-300 hover:text-cyan-400 font-medium transition-colors">
-        {/* Globe / Live Web Icon */}
         <svg
           className="w-4 h-4 text-slate-400 group-hover/live:text-cyan-400 transition-colors"
           fill="none"
@@ -118,7 +116,7 @@ export function LiveLink({ project }: { project: ProjectData }) {
       <button
         type="button"
         onClick={() => {
-          setInputValue(project.live_link);
+          setInputValue(project?.live_link);
           setEditing(true);
         }}
         className="p-1 text-slate-500 hover:text-slate-300 hover:bg-slate-800/80 rounded-md transition-colors ml-1"

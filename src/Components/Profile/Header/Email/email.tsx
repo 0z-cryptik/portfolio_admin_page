@@ -80,7 +80,7 @@ export function Email() {
       <a
         href={`mailto:${profile?.email}`}
         className="text-cyan-400 hover:underline font-medium transition-colors">
-        {profile.email}
+        {profile?.email}
       </a>
 
       <button

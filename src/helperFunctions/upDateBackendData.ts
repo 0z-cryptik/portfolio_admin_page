@@ -4,11 +4,18 @@ export async function updateBackendData<T>(
   httpMethod: string
 ): Promise<T> {
   try {
+    const token = localStorage.getItem("admin_token");
+
+    if (!token) {
+      throw new Error("failed to fetch token from local storage");
+      return;
+    }
+
     const response = await fetch(destinationUrl, {
       method: httpMethod,
       headers: {
         "Content-Type": "application/json",
-        "x-admin-token": localStorage.getItem("admin_token")
+        "x-admin-token": token
       },
       body: JSON.stringify(payload)
     });
