@@ -8,7 +8,6 @@ export async function updateBackendData<T>(
 
     if (!token) {
       throw new Error("failed to fetch token from local storage");
-      return;
     }
 
     const response = await fetch(destinationUrl, {

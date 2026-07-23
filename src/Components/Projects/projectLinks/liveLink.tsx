@@ -72,7 +72,7 @@ export function LiveLink({ project }: { project: ProjectData }) {
         <button
           type="button"
           onClick={() => {
-            setInputValue(project?.live_link);
+            setInputValue(project?.live_link?? "");
             setEditing(false);
           }}
           className="text-xs text-slate-400 hover:text-slate-200 px-2.5 py-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 transition-colors">
@@ -116,7 +116,7 @@ export function LiveLink({ project }: { project: ProjectData }) {
       <button
         type="button"
         onClick={() => {
-          setInputValue(project?.live_link);
+          setInputValue(project?.live_link?? "");
           setEditing(true);
         }}
         className="p-1 text-slate-500 hover:text-slate-300 hover:bg-slate-800/80 rounded-md transition-colors ml-1"

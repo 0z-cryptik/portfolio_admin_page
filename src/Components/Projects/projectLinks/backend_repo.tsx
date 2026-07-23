@@ -41,9 +41,23 @@ export function BackendRepo({ project }: { project: ProjectData }) {
   if (loading) {
     return (
       <div className="flex items-center gap-2 text-xs text-slate-500 animate-pulse py-1">
-        <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+        <svg
+          className="w-4 h-4 animate-spin"
+          fill="none"
+          viewBox="0 0 24 24">
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          />
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+          />
         </svg>
         <span>Updating backend link...</span>
       </div>
@@ -55,7 +69,9 @@ export function BackendRepo({ project }: { project: ProjectData }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit(project.project_id);
+          if (project?.project_id) {
+            handleSubmit(project.project_id);
+          }
         }}
         className="flex items-center gap-2 w-full max-w-md">
         <div className="relative flex-1 min-w-0">
@@ -72,7 +88,7 @@ export function BackendRepo({ project }: { project: ProjectData }) {
         <button
           type="button"
           onClick={() => {
-            setInputValue(project?.backend_repo);
+            setInputValue(project?.backend_repo ?? "");
             setEditing(false);
           }}
           className="text-xs text-slate-400 hover:text-slate-200 px-2.5 py-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 transition-colors">
@@ -109,21 +125,39 @@ export function BackendRepo({ project }: { project: ProjectData }) {
           />
         </svg>
         <span>Backend Code</span>
-        <svg className="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        <svg
+          className="w-3 h-3 text-slate-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+          />
         </svg>
       </a>
 
       <button
         type="button"
         onClick={() => {
-          setInputValue(project?.backend_repo);
+          setInputValue(project?.backend_repo ?? "");
           setEditing(true);
         }}
         className="p-1 text-slate-500 hover:text-slate-300 hover:bg-slate-800/80 rounded-md transition-colors ml-1"
         title="Edit backend link">
-        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+        <svg
+          className="w-3.5 h-3.5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+          />
         </svg>
       </button>
     </div>

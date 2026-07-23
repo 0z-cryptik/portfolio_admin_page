@@ -86,7 +86,7 @@ export function SeeHowItWorks({ project }: { project: ProjectData }) {
         <button
           type="button"
           onClick={() => {
-            setInputValue(project?.see_how_it_works);
+            setInputValue(project?.see_how_it_works ?? "");
             setEditing(false);
           }}
           className="text-xs text-slate-400 hover:text-slate-200 px-2.5 py-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 transition-colors">
@@ -145,7 +145,7 @@ export function SeeHowItWorks({ project }: { project: ProjectData }) {
       <button
         type="button"
         onClick={() => {
-          setInputValue(project?.see_how_it_works);
+          setInputValue(project?.see_how_it_works ?? "");
           setEditing(true);
         }}
         className="p-1 text-slate-500 hover:text-slate-300 hover:bg-slate-800/80 rounded-md transition-colors ml-1"
