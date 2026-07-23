@@ -78,7 +78,7 @@ export function Twitter() {
       </svg>
 
       <a
-        href={profile.twitter_url}
+        href={profile?.twitter_url}
         target="_blank"
         rel="noreferrer"
         className="text-slate-300 hover:text-cyan-400 truncate max-w-37.5 sm:max-w-50 transition-colors">
@@ -88,7 +88,7 @@ export function Twitter() {
       <button
         type="button"
         onClick={() => {
-          setInputValue(profile.twitter_url);
+          setInputValue(profile?.twitter_url);
           setEditing(true);
         }}
         className="p-0.5 text-slate-500 hover:text-slate-300 rounded transition-colors ml-0.5"

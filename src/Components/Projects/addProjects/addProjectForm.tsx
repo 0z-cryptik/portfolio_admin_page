@@ -186,7 +186,7 @@ export function AddProjectForm() {
           </label>
 
           <div className="flex max-sm:text-xs flex-wrap gap-2 bg-slate-900 p-3 rounded border border-slate-800">
-            {profile.skills.map((skill) => {
+            {profile?.skills.map((skill) => {
               const isSelected = formInputData.skillIds.includes(
                 skill.skill_id
               );

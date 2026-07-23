@@ -78,7 +78,7 @@ export function Email() {
       </svg>
 
       <a
-        href={`mailto:${profile.email}`}
+        href={`mailto:${profile?.email}`}
         className="text-cyan-400 hover:underline font-medium transition-colors">
         {profile.email}
       </a>
@@ -86,7 +86,7 @@ export function Email() {
       <button
         type="button"
         onClick={() => {
-          setInputValue(profile.email);
+          setInputValue(profile?.email);
           setEditing(true);
         }}
         className="p-0.5 text-slate-500 hover:text-slate-300 rounded transition-colors ml-0.5"

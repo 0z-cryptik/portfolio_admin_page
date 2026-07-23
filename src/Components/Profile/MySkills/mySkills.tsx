@@ -33,7 +33,7 @@ export function MySkills() {
       </h2>
 
       <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl flex flex-wrap items-center gap-2">
-        {profile.skills.map((skill) => {
+        {profile?.skills.map((skill) => {
           const isDeleting = deletingSkillId === skill.skill_id;
 
           return (

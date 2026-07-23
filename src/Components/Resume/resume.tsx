@@ -9,39 +9,39 @@ interface CVPdfProps {
 
 export function CVPdfDocument({ profile, projects }: CVPdfProps) {
   return (
-    <Document title={`${profile.full_name} - CV`}>
+    <Document title={`${profile?.full_name} - CV`}>
       <Page
         size="A4"
         style={styles.page}>
         {/* 1. Header Section */}
         <View style={styles.header}>
-          <Text style={styles.name}>{profile.full_name}</Text>
+          <Text style={styles.name}>{profile?.full_name}</Text>
 
           <View style={styles.contactRow}>
-            {profile.email && (
+            {profile?.email && (
               <Link
-                src={`mailto:${profile.email}`}
+                src={`mailto:${profile?.email}`}
                 style={styles.link}>
-                {profile.email}
+                {profile?.email}
               </Link>
             )}
-            {profile.github_url && (
+            {profile?.github_url && (
               <Link
-                src={profile.github_url}
+                src={profile?.github_url}
                 style={styles.link}>
                 GitHub
               </Link>
             )}
-            {profile.linkedin_url && (
+            {profile?.linkedin_url && (
               <Link
-                src={profile.linkedin_url}
+                src={profile?.linkedin_url}
                 style={styles.link}>
                 LinkedIn
               </Link>
             )}
-            {profile.twitter_url && (
+            {profile?.twitter_url && (
               <Link
-                src={profile.twitter_url}
+                src={profile?.twitter_url}
                 style={styles.link}>
                 X / Twitter
               </Link>
@@ -53,7 +53,7 @@ export function CVPdfDocument({ profile, projects }: CVPdfProps) {
         {profile.about_me && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>About Me</Text>
-            <Text style={styles.aboutText}>{profile.about_me}</Text>
+            <Text style={styles.aboutText}>{profile?.about_me}</Text>
           </View>
         )}
 
