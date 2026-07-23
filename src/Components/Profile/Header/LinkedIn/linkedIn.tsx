@@ -88,7 +88,7 @@ export function LinkedIn() {
       <button
         type="button"
         onClick={() => {
-          setInputValue(profile?.linkedin_url);
+          setInputValue(profile?.linkedin_url ?? "");
           setEditing(true);
         }}
         className="p-0.5 text-slate-500 hover:text-slate-300 rounded transition-colors ml-0.5"

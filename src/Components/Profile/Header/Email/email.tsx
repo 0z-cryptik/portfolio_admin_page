@@ -86,7 +86,7 @@ export function Email() {
       <button
         type="button"
         onClick={() => {
-          setInputValue(profile?.email);
+          setInputValue(profile?.email ?? "");
           setEditing(true);
         }}
         className="p-0.5 text-slate-500 hover:text-slate-300 rounded transition-colors ml-0.5"

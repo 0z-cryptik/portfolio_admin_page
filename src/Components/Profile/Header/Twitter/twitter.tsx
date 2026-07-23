@@ -15,7 +15,7 @@ export function Twitter() {
 
   const { profile, setProfile } = useMyGlobalState();
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
 
@@ -37,9 +37,23 @@ export function Twitter() {
   if (loading) {
     return (
       <div className="flex items-center gap-1.5 text-xs text-slate-500 animate-pulse py-1">
-        <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+        <svg
+          className="w-3.5 h-3.5 animate-spin"
+          fill="none"
+          viewBox="0 0 24 24">
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          />
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+          />
         </svg>
         <span>Saving...</span>
       </div>
@@ -48,7 +62,9 @@ export function Twitter() {
 
   if (editing) {
     return (
-      <form onSubmit={handleSubmit} className="flex items-center gap-2">
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center gap-2">
         <input
           type="url"
           autoFocus
@@ -73,7 +89,10 @@ export function Twitter() {
 
   return (
     <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900/60 border border-slate-800 hover:border-slate-700 rounded-lg text-xs transition-colors">
-      <svg className="w-3.5 h-3.5 text-slate-300 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <svg
+        className="w-3.5 h-3.5 text-slate-300 shrink-0"
+        fill="currentColor"
+        viewBox="0 0 24 24">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
       </svg>
 
@@ -88,13 +107,22 @@ export function Twitter() {
       <button
         type="button"
         onClick={() => {
-          setInputValue(profile?.twitter_url);
+          setInputValue(profile?.twitter_url ?? "");
           setEditing(true);
         }}
         className="p-0.5 text-slate-500 hover:text-slate-300 rounded transition-colors ml-0.5"
         title="Edit Twitter URL">
-        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+        <svg
+          className="w-3 h-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+          />
         </svg>
       </button>
     </div>
