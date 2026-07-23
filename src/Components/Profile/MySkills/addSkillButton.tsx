@@ -24,7 +24,7 @@ export function AddSkillButton() {
     setLoading(true);
     setEditing(false);
     const updatedProfile = await updateBackendData<ProfileData>(
-      "http://localhost:3000/api/profile/1/skills",
+      `${import.meta.env.VITE_SERVER_URL}/api/profile/1/skills`,
       { newSkill: inputValue },
       "POST"
     );

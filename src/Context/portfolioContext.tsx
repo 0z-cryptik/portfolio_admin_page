@@ -29,8 +29,8 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     async function fetchDashboardData() {
       try {
         const [profileRes, projectsRes] = await Promise.all([
-          fetch("http://localhost:3000/api/profile/1"),
-          fetch("http://localhost:3000/api/profile/1/projects")
+          fetch(`${import.meta.env.VITE_SERVER_URL}/api/profile/1`),
+          fetch(`${import.meta.env.VITE_SERVER_URL}/api/profile/1/projects`)
         ]);
 
         if (!profileRes.ok || !projectsRes.ok) {

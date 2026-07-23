@@ -49,7 +49,7 @@ export function ProjectSkills({ project }: { project: ProjectData }) {
 
     try {
       const updatedProjects = await updateBackendData<ProjectData[]>(
-        "http://localhost:3000/api/profile/1/projects/skills",
+        `${import.meta.env.VITE_SERVER_URL}/api/profile/1/projects/skills`,
         { skillId: `${skillId}`, projectId: `${project.project_id}` },
         "DELETE"
       );

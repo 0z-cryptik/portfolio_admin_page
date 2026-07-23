@@ -18,7 +18,7 @@ export function ShowOnCVToggle({ project }: ProjectRepoToggleProps) {
 
     try {
       const updatedProjects = await updateBackendData<any>(
-        "http://localhost:3000/api/profile/1/projects/",
+        `${import.meta.env.VITE_SERVER_URL}/api/profile/1/projects/`,
         {
           field: "show_on_cv",
           newValue: newValue,

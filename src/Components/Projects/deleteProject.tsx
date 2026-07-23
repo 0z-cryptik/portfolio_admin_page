@@ -12,7 +12,7 @@ export function DeleteProject({ project }: { project: ProjectData }) {
 
     try {
       const updatedProjects = await updateBackendData<ProjectData[]>(
-        "http://localhost:3000/api/profile/1/projects",
+        `${import.meta.env.VITE_SERVER_URL}/api/profile/1/projects`,
         { projectId: `${project.project_id}` },
         "DELETE"
       );

@@ -21,7 +21,7 @@ export function Github() {
 
     try {
       let updatedprofile = await updateBackendData<ProfileData>(
-        "http://localhost:3000/api/profile/1/",
+        `${import.meta.env.VITE_SERVER_URL}/api/profile/1/`,
         { field: "github_url", newValue: inputValue },
         "PUT"
       );

@@ -21,7 +21,7 @@ export function ProjectTitle({ project }: { project: ProjectData }) {
     setEditing(false);
 
     let updatedProjects = await updateBackendData<ProjectData[]>(
-      "http://localhost:3000/api/profile/1/projects/",
+      `${import.meta.env.VITE_SERVER_URL}/api/profile/1/projects/`,
       { field: "title", newValue: inputValue, projectId: `${projectId}` },
       "PUT"
     );

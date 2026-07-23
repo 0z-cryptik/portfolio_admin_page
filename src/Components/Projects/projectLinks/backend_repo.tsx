@@ -20,7 +20,7 @@ export function BackendRepo({ project }: { project: ProjectData }) {
 
     try {
       let updatedProjects = await updateBackendData<ProjectData[]>(
-        "http://localhost:3000/api/profile/1/projects/",
+        `${import.meta.env.VITE_SERVER_URL}/api/profile/1/projects/`,
         {
           field: "backend_repo",
           newValue: inputValue,

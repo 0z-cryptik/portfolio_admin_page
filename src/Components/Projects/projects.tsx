@@ -31,7 +31,7 @@ export function Projects() {
 
     try {
       await updateBackendData(
-        "http://localhost:3000/api/projects/reorder",
+        `${import.meta.env.VITE_SERVER_URL}/api/projects/reorder`,
         { orders: orderPayload },
         "PUT"
       );
