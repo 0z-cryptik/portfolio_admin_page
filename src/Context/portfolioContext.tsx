@@ -3,14 +3,15 @@ import type { Dispatch, SetStateAction } from "react";
 import type { ReactNode } from "react";
 import type { ProfileData, ProjectData } from "../Types/customTypes";
 
-// Define everything our global context will share with other files
 interface PortfolioContextType {
   profile: ProfileData | null;
-  setProfile: Dispatch<SetStateAction<ProfileData | null>>; 
+  setProfile: Dispatch<SetStateAction<ProfileData | null>>;
   projects: ProjectData[];
-  setProjects: Dispatch<SetStateAction<ProjectData[]>>; 
+  setProjects: Dispatch<SetStateAction<ProjectData[]>>;
   loading: boolean;
   error: string | null;
+  adminTokenSet: boolean;
+  setAdminTokenSet: Dispatch<SetStateAction<boolean>>;
 }
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(
@@ -20,11 +21,12 @@ const PortfolioContext = createContext<PortfolioContextType | undefined>(
 export function PortfolioProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [projects, setProjects] = useState<ProjectData[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [adminTokenSet, setAdminTokenSet] = useState(false);
 
   useEffect(() => {
-    const fetchDashboardData = async () => {
+    async function fetchDashboardData() {
       try {
         const [profileRes, projectsRes] = await Promise.all([
           fetch("http://localhost:3000/api/profile/1"),
@@ -46,10 +48,15 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
       } finally {
         setLoading(false);
       }
-    };
+    }
 
-    fetchDashboardData();
-  }, []);
+    const securityToken = localStorage.getItem("admin_token");
+
+    if (securityToken) {
+      setAdminTokenSet(true);
+      fetchDashboardData();
+    }
+  }, [adminTokenSet]);
 
   return (
     <PortfolioContext.Provider
@@ -59,7 +66,9 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
         loading,
         error,
         setProfile,
-        setProjects
+        setProjects,
+        adminTokenSet,
+        setAdminTokenSet
       }}>
       {children}
     </PortfolioContext.Provider>

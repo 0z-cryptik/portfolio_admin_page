@@ -7,10 +7,17 @@ export async function updateBackendData<T>(
     const response = await fetch(destinationUrl, {
       method: httpMethod,
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "x-admin-token": localStorage.getItem("admin_token")
       },
       body: JSON.stringify(payload)
     });
+
+    // If the backend returns 401 (Wrong key or missing header)
+    if (response.status === 401 || response.status === 403) {
+      localStorage.removeItem("admin_token");
+      window.location.reload(); // Trigger re-prompt
+    }
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));

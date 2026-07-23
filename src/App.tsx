@@ -6,16 +6,21 @@ import { AboutMe } from "./Components/Profile/aboutMe";
 import { MySkills } from "./Components/Profile/MySkills/mySkills";
 import { ProjectsHeading } from "./Components/Projects/projectHeading";
 import { Projects } from "./Components/Projects/projects";
+import { AdminPasskeyModal } from "./Components/enterAdminKey";
 
 export default function App() {
-  const { loading, error } = useMyGlobalState();
-
-  if (loading) {
-    return <PageLoader></PageLoader>;
-  }
+  const { loading, error, adminTokenSet } = useMyGlobalState();
 
   if (error) {
-    return <HomePageError></HomePageError>;
+    return <HomePageError />;
+  }
+
+  if (!adminTokenSet) {
+    return <AdminPasskeyModal />;
+  }
+
+  if (adminTokenSet && loading) {
+    return <PageLoader />;
   }
 
   return (
